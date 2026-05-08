@@ -25,7 +25,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "st7789.h"
+#include <stdio.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -45,7 +46,9 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-
+float voltaje = 0.00f;
+float porcentaje_bateria = 0.00f;
+float consumo = 0.00f;
 /* USER CODE END Variables */
 osThreadId defaultTaskHandle;
 osThreadId batterygau_taskHandle;
@@ -172,10 +175,24 @@ void StartGaulge_task(void const * argument)
 void StartLCD_task(void const * argument)
 {
   /* USER CODE BEGIN StartLCD_task */
+  char str_buffer[32];
+  ST7789_Fill_Color(BLACK);
+  ST7789_WriteString(43, 15, "ESTADO BATERIA", Font_11x18, YELLOW, BLACK);
+  ST7789_DrawLine(10, 40, 230, 40, WHITE);
+
   /* Infinite loop */
   for(;;)
-  {
-    osDelay(1);
+  { 
+    sprintf(str_buffer, "Voltaje: %5.2f V", voltaje);
+    ST7789_WriteString(15, 70, str_buffer, Font_11x18, WHITE, BLACK);
+    
+    sprintf(str_buffer, "Consumo: %5.2f A", consumo);
+    ST7789_WriteString(15, 120, str_buffer, Font_11x18, RED, BLACK);
+    
+    sprintf(str_buffer, "Bateria: %5.2f %%", porcentaje_bateria);
+    ST7789_WriteString(15, 170, str_buffer, Font_11x18, GREEN, BLACK);
+
+    osDelay(500); // Pausamos la tarea 500ms para no saturar el bus SPI
   }
   /* USER CODE END StartLCD_task */
 }
