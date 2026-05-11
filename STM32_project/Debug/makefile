@@ -68,8 +68,8 @@ all: main-build
 main-build: TFG_project.elf secondary-outputs
 
 # Tool invocations
-TFG_project.elf TFG_project.map: $(OBJS) $(USER_OBJS) D:\Master\TFG\STM32F411VETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "TFG_project.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\Master\TFG\STM32F411VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TFG_project.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+TFG_project.elf TFG_project.map: $(OBJS) $(USER_OBJS) C:\Users\kille\Desktop\Master_provisional\STM32_project\STM32F411VETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "TFG_project.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\kille\Desktop\Master_provisional\STM32_project\STM32F411VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TFG_project.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
