@@ -1,32 +1,70 @@
-# 🔭 Sistema de Alimentación Portátil para Montura de Telescopio
+# Sistema de Alimentación Portátil para Montura de Telescopio
 
-Este repositorio contiene todo el desarrollo de hardware, firmware y documentación del **Trabajo Fin de Grado / Máster** realizado en la **Universidad Politécnica de Madrid (UPM)**. El objetivo principal es el diseño y prototipado de un sistema electrónico modular y robusto capaz de gestionar la energía y alimentar de forma portátil la electrónica y los motores de una montura de telescopio.
-
-## 🚀 Características Principales
-
-* **Gestión Inteligente de Batería (BMS):** Monitorización en tiempo real mediante el integrado de potencia **BQ34Z100-G1** (Impedance Track™) sobre una batería LiFePO4 de 12.8V.
-* **Regulación de Potencia:** Arquitectura de conversión Buck-Boost eficiente para estabilizar las líneas de tensión frente a los picos de carga de los motores.
-* **Controlador Central:** Firmware desarrollado sobre un microcontrolador **STM32F411** en entorno STM32CubeIDE y FreeRTOS para la gestión de tareas.
-* **Diseño de PCB Modular:** Placas de circuito impreso diseñadas de forma modular en **KiCad**, incluyendo tiras de pines para testeo en laboratorio y jumpers de selección de niveles lógicos.
-
-## 🛠️ Arquitectura del Sistema
-
-El proyecto se divide en tres bloques físicos independientes para facilitar el prototipado y aislamiento de fallos:
-1.  **Bloque de Gestión de Batería (BMS):** Centrado en el circuito del BQ34Z100-G1, sensor de temperatura NTC acoplado a las celdas y filtrado RC para la resistencia Shunt.
-2.  **Bloque de Regulación y Potencia:** Convertidores de tensión apantallados con bobinas robustas para mitigar el ruido electromagnético.
-3.  **Bloque de Control:** Placa de desarrollo de la STM32F411 encargada de leer la telemetría por bus I2C y procesar los estados.
-
-## 📂 Estructura del Repositorio
-
-* `/Hardware`: Esquemas de conexión, ficheros de diseño de PCB y footprints utilizados en **KiCad**.
-* `/Firmware`: Código fuente en C/C++ desarrollado para la STM32 (`Core/Src`, `Core/Inc`, configuración de FreeRTOS).
-* `/Documentación`: Hojas de características (datasheets), notas de aplicación de Texas Instruments y esquemas del anteproyecto.
-
-## 🔧 Configuración del Laboratorio (Debug)
-
-Para la depuración del bus I2C y monitorización de registros en tiempo real:
-* **Líneas de Pull-Up:** Configurables mediante jumper físico a `3.3V` (Línea del microcontrolador para garantizar inmunidad al ruido y niveles lógicos correctos).
-* **Puntos de Test (Pins):** Espadines de 2.54 mm accesibles para osciloscopio o analizador lógico en las señales `SDA`, `SCL`, `REG25` (2.5V de lógica interna) y `BAT`.
+**Trabajo Fin de Grado** — Grado en Ingeniería Electrónica de Comunicaciones  
+ETSIST · Universidad Politécnica de Madrid (UPM)
 
 ---
-*Desarrollado por Nizar El Amine - Escuela Técnica Superior de Ingeniería de Sistemas de Telecomunicación (ETSIST - UPM).*
+
+## De qué va este proyecto
+
+Cualquiera que haya hecho astrofotografía o astronomía visual en campo abierto sabe que la energía es un problema. Las monturas motorizadas, las cámaras y los accesorios necesitan alimentación estable durante horas, normalmente lejos de cualquier enchufe. La solución clásica es cargar con una batería de plomo-ácido, que pesa, ocupa y no te dice cuánta carga le queda realmente.
+
+Este TFG propone una alternativa: un **sistema de alimentación portátil basado en baterías LiFePO4** (12.8V, 7.5Ah), más ligeras y seguras que el plomo, con electrónica dedicada para monitorizar el estado de carga real, gestionar la recarga y entregar una tensión de salida estable a la montura.
+
+## Qué hace el sistema
+
+- **Mide la carga real de la batería** usando un fuel gauge (BQ34Z100-G1) con tecnología Impedance Track, que compensa el envejecimiento de las celdas y mide temperatura con un termistor NTC.
+- **Gestiona la recarga** con un cargador buck-boost BQ25792, compatible con USB-PD 3.0.
+- **Estabiliza la tensión de salida** mediante un convertidor buck-boost TPS551892-Q1, preparado para los picos de corriente que generan los motores de la montura.
+- **Coordina todo** desde un microcontrolador STM32F411 programado con FreeRTOS, que lee la telemetría por I2C y gestiona las tareas del sistema de forma concurrente.
+
+## Diseño hardware
+
+El hardware está diseñado en **KiCad** y separado en PCBs independientes para aislar ruidos electromagnéticos y facilitar la depuración:
+
+1. **Battery Gauge (BMS)** — Circuito del BQ34Z100-G1 con divisor de tensión, shunt de corriente y sensor térmico.
+2. **Battery Charger** — Circuito del BQ25792 con la electrónica de carga.
+3. **Bloque de control** — MCU STM32F411, buses I2C y lectura de telemetría.
+
+## Estructura del repositorio
+
+```
+├── Anteproyecto/          Documentos del anteproyecto (borradores, versión firmada, ejemplos y revisiones del tutor)
+├── Archivos/              Datasheets de referencia consultados durante el diseño
+├── Inventario/            Datasheets organizados por tipo de componente:
+│   ├── Bateria/               Pack LiFePO4 12.8V 7.5Ah
+│   ├── Battery_Charger/       BQ25792, BQ25690, LTC4020, etc.
+│   ├── Battery_Gauge/         BQ34Z100-G1, BQ34110, BQ78350, etc.
+│   ├── DC-DC_BuckBoost/       TPS551892-Q1, TPS55285, TPS63070, etc.
+│   ├── Microcontrolador/      STM32F411 Discovery
+│   ├── Bobina/
+│   ├── Conectores/
+│   ├── Diodos-zener/
+│   ├── Resistencias/
+│   └── Transistores/
+├── Notas/                 Notas y documentación del proyecto (memoria, apuntes)
+├── PCB/                   Diseños de PCB en KiCad
+│   ├── Prototipo_2.0/        Prototipo inicial del battery gauge
+│   └── Proyecto/              Diseños finales
+│       ├── PCB_BatteryCharger/
+│       └── PCB_BatteryGaulge/
+├── STM32_project/         Firmware en C (STM32CubeIDE + FreeRTOS)
+└── README.md
+```
+
+## Herramientas utilizadas
+
+| Área | Herramienta |
+|---|---|
+| Esquemáticos y PCB | KiCad |
+| Firmware | STM32CubeIDE (HAL + FreeRTOS) |
+| Microcontrolador | STM32F411 Discovery |
+| Documentación | Word / PDF |
+
+## Estado del proyecto
+
+Este repositorio recoge todo el proceso de desarrollo del TFG: desde los primeros borradores del anteproyecto hasta los diseños de PCB y el firmware. Es un proyecto en progreso.
+
+---
+
+*Nizar El Azeouzi Amine — ETSIST, Universidad Politécnica de Madrid*
