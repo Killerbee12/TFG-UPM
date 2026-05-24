@@ -1,5 +1,12 @@
-../Core/Src/freertos.c:76:6:vApplicationGetIdleTaskMemory	1
-../Core/Src/freertos.c:90:6:MX_FREERTOS_Init	1
-../Core/Src/freertos.c:137:6:StartDefaultTask	1
-../Core/Src/freertos.c:157:6:StartGaulge_task	1
-../Core/Src/freertos.c:175:6:StartLCD_task	1
+../Core/Src/freertos.c:88:6:vApplicationGetIdleTaskMemory	1
+../Core/Src/freertos.c:102:6:MX_FREERTOS_Init	1
+../Core/Src/freertos.c:149:6:StartDefaultTask	1
+../Core/Src/freertos.c:163:10:BQ34Z100_GetDeviceType	4
+../Core/Src/freertos.c:194:6:BQ34Z100_Unseal	1
+../Core/Src/freertos.c:204:6:BQ34Z100_Seal	1
+../Core/Src/freertos.c:209:6:BQ34Z100_WriteFlashBlock	3
+../Core/Src/freertos.c:236:6:BQ34Z100_ReadFlashBlock	2
+../Core/Src/freertos.c:252:6:Configurar_BQ34Z100	1
+../Core/Src/freertos.c:287:6:Reparar_BQ34Z100	1
+../Core/Src/freertos.c:314:6:StartGaulge_task	14
+../Core/Src/freertos.c:394:6:StartLCD_task	6

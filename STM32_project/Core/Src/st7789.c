@@ -184,6 +184,7 @@ void ST7789_Init(void)
 	}
     ST7789_WriteCommand (ST7789_INVON);		//	Inversion ON
 	ST7789_WriteCommand (ST7789_SLPOUT);	//	Out of sleep mode
+	HAL_Delay(120);                         //  Required delay!
   	ST7789_WriteCommand (ST7789_NORON);		//	Normal Display on
   	ST7789_WriteCommand (ST7789_DISPON);	//	Main screen turned on	
 

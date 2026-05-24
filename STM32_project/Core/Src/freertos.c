@@ -47,11 +47,11 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-float voltaje = 0.00f;
-float porcentaje_bateria = 0.00f;
-float consumo = 0.00f;
+float voltaje;
+float porcentaje_bateria;
+float consumo;
 uint16_t capacidad_restante = 0;
-float temperatura = 0.00f;
+float temperatura;
 /* USER CODE END Variables */
 osThreadId defaultTaskHandle;
 osThreadId batterygau_taskHandle;
@@ -72,6 +72,7 @@ void BQ34Z100_Seal(void);
 void BQ34Z100_WriteFlashBlock(uint8_t subclass, uint8_t offset, uint8_t* data, uint8_t length);
 void BQ34Z100_ReadFlashBlock(uint8_t subclass, uint8_t offset, uint8_t* out_data, uint8_t length);
 void Configurar_BQ34Z100(void);
+uint16_t BQ34Z100_GetDeviceType(void);
 
 
 extern void MX_USB_HOST_Init(void);
@@ -125,11 +126,11 @@ void MX_FREERTOS_Init(void) {
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
   /* definition and creation of batterygau_task */
-  osThreadDef(batterygau_task, StartGaulge_task, osPriorityIdle, 0, 128);
+  osThreadDef(batterygau_task, StartGaulge_task, osPriorityIdle, 0, 512);
   batterygau_taskHandle = osThreadCreate(osThread(batterygau_task), NULL);
 
   /* definition and creation of LCD_task */
-  osThreadDef(LCD_task, StartLCD_task, osPriorityIdle, 0, 128);
+  osThreadDef(LCD_task, StartLCD_task, osPriorityIdle, 0, 512);
   LCD_taskHandle = osThreadCreate(osThread(LCD_task), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
@@ -159,6 +160,37 @@ void StartDefaultTask(void const * argument)
 }
 
 /* USER CODE BEGIN Application_BQ_Config */
+uint16_t BQ34Z100_GetDeviceType(void) {
+    uint8_t data[2];
+    data[0] = 0x01; 
+    data[1] = 0x00;
+
+    // 1. Comprobar si el dispositivo responde a su dirección
+    HAL_StatusTypeDef ready = HAL_I2C_IsDeviceReady(&hi2c1, 0xAA, 3, 100);
+    if (ready != HAL_OK) {
+        printf("I2C DEBUG: El BQ34Z100 no hace ACK en la direccion 0xAA (HAL Status: %d)\r\n", ready);
+        return 0; // Si no responde, salir directamente
+    }
+
+    // 2. Enviar el comando para pedir el Device Type
+    HAL_StatusTypeDef w_status = HAL_I2C_Mem_Write(&hi2c1, 0xAA, 0x00, 1, data, 2, 100);
+    if (w_status != HAL_OK) {
+        printf("I2C DEBUG: Fallo al escribir el comando (HAL Status: %d)\r\n", w_status);
+        return 0;
+    }
+    
+    osDelay(10);
+    
+    // 3. Leer la respuesta
+    HAL_StatusTypeDef r_status = HAL_I2C_Mem_Read(&hi2c1, 0xAA, 0x00, 1, data, 2, 100);
+    if (r_status == HAL_OK) {
+        return (data[1] << 8) | data[0];
+    } else {
+        printf("I2C DEBUG: Fallo al leer la respuesta (HAL Status: %d)\r\n", r_status);
+        return 0;
+    }
+}
+
 void BQ34Z100_Unseal(void) {
     uint8_t data[2];
     data[0] = 0x14; data[1] = 0x04;
@@ -220,52 +252,64 @@ void BQ34Z100_ReadFlashBlock(uint8_t subclass, uint8_t offset, uint8_t* out_data
 void Configurar_BQ34Z100(void) {
     BQ34Z100_Unseal();
     
-    // 1. Pack Configuration (Activar bit VOLTSEL)
     uint8_t pack_config[2];
     BQ34Z100_ReadFlashBlock(64, 0, pack_config, 2);
-    pack_config[0] |= (1 << 3); // Poner el bit VOLTSEL a 1
+    pack_config[0] |= (1 << 3);
     BQ34Z100_WriteFlashBlock(64, 0, pack_config, 2);
 
-    // 2. Number of Series Cells (Configurar a 4 celdas)
     uint8_t cells = 4;
     BQ34Z100_WriteFlashBlock(64, 7, &cells, 1);
     
-    // 3. Design Capacity (7500 mAh) -> SUBCLASS 48, Offset 11
     uint8_t capacity[2] = { (7500 >> 8) & 0xFF, 7500 & 0xFF }; 
     BQ34Z100_WriteFlashBlock(48, 11, capacity, 2);
 
-    // 4. Design Energy (96000 mWh) -> SUBCLASS 48, Offset 13
-    // El registro es de 2 bytes (máximo 65535). Como 96000 no cabe, hay que escalar entre 10 
-    // y activar el Design Energy Scale a 10.
-    uint16_t energy = 9600; // 96000 / 10
+    uint16_t energy = 9600;
     uint8_t energy_arr[2] = { (energy >> 8) & 0xFF, energy & 0xFF };
     BQ34Z100_WriteFlashBlock(48, 13, energy_arr, 2);
     
-    // Design Energy Scale -> SUBCLASS 48, Offset 30
     uint8_t energy_scale = 10;
     BQ34Z100_WriteFlashBlock(48, 30, &energy_scale, 1);
 
-    // 5. Voltage Divider (Ej: 13500 mV aprox para calibrar)
     uint16_t volt_divider = 13500; 
     uint8_t vd_data[2] = { (volt_divider >> 8) & 0xFF, volt_divider & 0xFF };
     BQ34Z100_WriteFlashBlock(104, 14, vd_data, 2);
 
-    // 6. CC Gain y CC Delta (Para resistencia Shunt de 60mOhm)
-    // Valores precalculados de Xemics Floating Point para 60mOhm:
-    // CC Gain = 4.768 / 60 = 0.07946 -> 0x7D, 0xA2, 0xBF, 0xAA
-    // CC Delta = 5677445 / 60 = 94624.08 -> 0x91, 0xB8, 0xD1, 0xD4
     uint8_t cc_gain[4] = { 0x7D, 0xA2, 0xBF, 0xAA };
     BQ34Z100_WriteFlashBlock(104, 0, cc_gain, 4);
 
     uint8_t cc_delta[4] = { 0x91, 0xB8, 0xD1, 0xD4 };
     BQ34Z100_WriteFlashBlock(104, 4, cc_delta, 4);
 
-    // NOTA 7: Chemistry ID (ChemID) de LiFePO4 no se puede cambiar con 2 bytes
-    // desde el STM32 fácilmente, se mantendrá en Litio-Ion por defecto.
-
     BQ34Z100_Seal();
 }
 /* USER CODE END Application_BQ_Config */
+
+void Reparar_BQ34Z100(void) {
+    printf("\r\n--- INICIANDO REPARACION DE FLASH ---\r\n");
+    // 1. Desbloquear el chip para poder escribir
+    BQ34Z100_Unseal();
+    osDelay(100);
+
+    // 2. Valores seguros de fabrica (Asumen un Shunt de 1 mili-Ohm)
+    uint8_t cc_gain_default[4] = { 0x82, 0x98, 0x96, 0xA2 };
+    BQ34Z100_WriteFlashBlock(104, 0, cc_gain_default, 4);
+    
+    uint8_t cc_delta_default[4] = { 0x82, 0xA8, 0x5D, 0xE3 };
+    BQ34Z100_WriteFlashBlock(104, 4, cc_delta_default, 4);
+
+    // NUEVO: Borrar cualquier "Tara" (Offset) corrupta que este sumando 30 Amperios
+    uint8_t zero_offset[2] = { 0x00, 0x00 };
+    BQ34Z100_WriteFlashBlock(104, 8, zero_offset, 2);  // Board Offset
+    BQ34Z100_WriteFlashBlock(104, 12, zero_offset, 2); // CC Offset
+
+    // 3. Divisor de voltaje para bateria de 12.8V (12800 mV = 0x3200 HEX)
+    uint8_t v_div[2] = { 0x32, 0x00 };
+    BQ34Z100_WriteFlashBlock(104, 14, v_div, 2);
+
+    // 4. Volver a bloquear
+    BQ34Z100_Seal();
+    printf("--- REPARACION COMPLETADA ---\r\n\r\n");
+}
 
 void StartGaulge_task(void const * argument)
 {
@@ -275,46 +319,66 @@ void StartGaulge_task(void const * argument)
   int16_t val_i16;
   const uint16_t BQ34Z100_ADDR = 0xAA;
 
-  // Configurar_BQ34Z100();
+  uint16_t dev_type = BQ34Z100_GetDeviceType();
+  printf("Verificando I2C... DEVICE_TYPE: 0x%04X\r\n", dev_type);
+  if (dev_type != 0x0100) {
+      printf("ERROR de I2C: No se detecta BQ34Z100-G1.\r\n");
+  } else {
+      printf("BQ34Z100-G1 Detectado correctamente.\r\n");
+  }
+
+  // EJECUTAR REPARACION (Solo la dejaremos descomentada para probar 1 vez)
+  // Reparar_BQ34Z100();
 
   /* Infinite loop */
   for(;;)
   {
+    uint8_t buf_v[2] = {0};
+    uint8_t buf_c[2] = {0};
+    uint8_t buf_s[2] = {0};
+    uint8_t buf_t[2] = {0};
+
     // 0x08 Voltaje (mV)
-    if (HAL_I2C_Mem_Read(&hi2c1, BQ34Z100_ADDR, 0x08, I2C_MEMADD_SIZE_8BIT, buffer, 2, 1000) == HAL_OK) {
-        val_u16 = (buffer[1] << 8) | buffer[0];
-        voltaje = val_u16 / 1000.0f; // Convertir a Voltios
+    if (HAL_I2C_Mem_Read(&hi2c1, BQ34Z100_ADDR, 0x08, I2C_MEMADD_SIZE_8BIT, buf_v, 2, 1000) == HAL_OK) {
+        val_u16 = (buf_v[1] << 8) | buf_v[0];
+        voltaje = val_u16 / 1000.0f; 
     }
 
     // 0x0A Corriente (mA)
-    if (HAL_I2C_Mem_Read(&hi2c1, BQ34Z100_ADDR, 0x0A, I2C_MEMADD_SIZE_8BIT, buffer, 2, 1000) == HAL_OK) {
-        val_i16 = (int16_t)((buffer[1] << 8) | buffer[0]);
-        consumo = val_i16 / 1000.0f; // Convertir a Amperios
+    if (HAL_I2C_Mem_Read(&hi2c1, BQ34Z100_ADDR, 0x0A, I2C_MEMADD_SIZE_8BIT, buf_c, 2, 1000) == HAL_OK) {
+        val_i16 = (int16_t)((buf_c[1] << 8) | buf_c[0]);
+        consumo = val_i16 / 1000.0f; 
     }
 
     // 0x02 State of Charge (%)
-    if (HAL_I2C_Mem_Read(&hi2c1, BQ34Z100_ADDR, 0x02, I2C_MEMADD_SIZE_8BIT, buffer, 2, 1000) == HAL_OK) {
-        val_u16 = (buffer[1] << 8) | buffer[0];
+    if (HAL_I2C_Mem_Read(&hi2c1, BQ34Z100_ADDR, 0x02, I2C_MEMADD_SIZE_8BIT, buf_s, 2, 1000) == HAL_OK) {
+        val_u16 = (buf_s[1] << 8) | buf_s[0];
         porcentaje_bateria = (float)val_u16;
     }
 
-    // 0x04 Remaining Capacity (mAh)
-    if (HAL_I2C_Mem_Read(&hi2c1, BQ34Z100_ADDR, 0x04, I2C_MEMADD_SIZE_8BIT, buffer, 2, 1000) == HAL_OK) {
-        val_u16 = (buffer[1] << 8) | buffer[0];
-        capacidad_restante = val_u16;
+    // 0x0C Temperature (0.1°K)
+    if (HAL_I2C_Mem_Read(&hi2c1, BQ34Z100_ADDR, 0x0C, I2C_MEMADD_SIZE_8BIT, buf_t, 2, 1000) == HAL_OK) {
+        val_u16 = (buf_t[1] << 8) | buf_t[0];
+        temperatura = (val_u16 - 2731) / 10.0f; 
     }
 
-    // 0x06 Temperature (0.1°K)
-    if (HAL_I2C_Mem_Read(&hi2c1, BQ34Z100_ADDR, 0x06, I2C_MEMADD_SIZE_8BIT, buffer, 2, 1000) == HAL_OK) {
-        val_u16 = (buffer[1] << 8) | buffer[0];
-        temperatura = (val_u16 - 2731) / 10.0f; // Convertir a Celsius
-    }
+    // IMPRESION DE DEBUG PARA VER LOS BYTES CRUDOS QUE LLEGAN
+    printf("\r\nRAW BYTES -> V:[%02X %02X] I:[%02X %02X] SOC:[%02X %02X] T:[%02X %02X]\r\n", 
+           buf_v[0], buf_v[1], buf_c[0], buf_c[1], buf_s[0], buf_s[1], buf_t[0], buf_t[1]);
 
-    // Imprimir por el puerto serie (ITM/SWV o UART según tengas configurado el _write)
-    printf("BQ34Z100 -> V: %5.2fV | I: %5.2fA | SOC: %5.1f%% | RemCap: %d mAh | Temp: %5.1f C\r\n", 
-           voltaje, consumo, porcentaje_bateria, capacidad_restante, temperatura);
+    int v_int = (int)voltaje, v_dec = (int)((voltaje - v_int) * 100); if(v_dec < 0) v_dec = -v_dec;
+    int c_int = (int)consumo, c_dec = (int)((consumo - c_int) * 100); if(c_dec < 0) c_dec = -c_dec;
+    int b_int = (int)porcentaje_bateria, b_dec = (int)((porcentaje_bateria - b_int) * 10); if(b_dec < 0) b_dec = -b_dec;
+    int t_int = (int)temperatura, t_dec = (int)((temperatura - t_int) * 10); if(t_dec < 0) t_dec = -t_dec;
 
-    // Refrescamos cada 2 segundos (2000 ms)
+    char c_sign[2] = {0};
+    if (consumo < 0 && c_int == 0) c_sign[0] = '-';
+    char t_sign[2] = {0};
+    if (temperatura < 0 && t_int == 0) t_sign[0] = '-';
+
+    printf("BQ34Z100 -> V: %d.%02dV | I: %s%d.%02dA | SOC: %d.%01d%% | Temp: %s%d.%01d C\r\n", 
+           v_int, v_dec, c_sign, c_int, c_dec, b_int, b_dec, t_sign, t_int, t_dec);
+
     osDelay(2000);
   }
   /* USER CODE END StartGaulge_task */
@@ -338,16 +402,27 @@ void StartLCD_task(void const * argument)
   /* Infinite loop */
   for(;;)
   { 
-    sprintf(str_buffer, "Voltaje: %5.2f V", voltaje);
+    int v_int = (int)voltaje;
+    int v_dec = (int)((voltaje - v_int) * 100);
+    if (v_dec < 0) v_dec = -v_dec;
+    sprintf(str_buffer, "Voltaje: %d.%02d V  ", v_int, v_dec);
     ST7789_WriteString(15, 70, str_buffer, Font_11x18, WHITE, BLACK);
     
-    sprintf(str_buffer, "Consumo: %5.2f A", consumo);
+    int c_int = (int)consumo;
+    int c_dec = (int)((consumo - c_int) * 100);
+    if (c_dec < 0) c_dec = -c_dec;
+    char c_sign[2] = {0};
+    if (consumo < 0 && c_int == 0) c_sign[0] = '-';
+    sprintf(str_buffer, "Consumo: %s%d.%02d A  ", c_sign, c_int, c_dec);
     ST7789_WriteString(15, 120, str_buffer, Font_11x18, RED, BLACK);
     
-    sprintf(str_buffer, "Bateria: %5.2f %%", porcentaje_bateria);
+    int b_int = (int)porcentaje_bateria;
+    int b_dec = (int)((porcentaje_bateria - b_int) * 100);
+    if (b_dec < 0) b_dec = -b_dec;
+    sprintf(str_buffer, "Bateria: %d.%02d %% ", b_int, b_dec);
     ST7789_WriteString(15, 170, str_buffer, Font_11x18, GREEN, BLACK);
 
-    osDelay(500); // Pausamos la tarea 500ms para no saturar el bus SPI
+    osDelay(500);
   }
   /* USER CODE END StartLCD_task */
 }

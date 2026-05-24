@@ -48,7 +48,8 @@ Core/Src/freertos.o: ../Core/Src/freertos.c \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h \
- ../Core/Inc/st7789.h ../Core/Inc/fonts.h ../Core/Inc/main.h
+ ../Core/Inc/st7789.h ../Core/Inc/fonts.h ../Core/Inc/main.h \
+ ../Core/Inc/i2c.h
 ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
 ../Core/Inc/FreeRTOSConfig.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h:
@@ -102,3 +103,4 @@ Core/Src/freertos.o: ../Core/Src/freertos.c \
 ../Core/Inc/st7789.h:
 ../Core/Inc/fonts.h:
 ../Core/Inc/main.h:
+../Core/Inc/i2c.h:
