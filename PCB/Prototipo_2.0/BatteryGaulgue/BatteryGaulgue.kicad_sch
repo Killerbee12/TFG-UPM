@@ -4,6 +4,11 @@
 	(generator_version "9.0")
 	(uuid "d9883196-7b86-429d-bce4-6095ecf99ec7")
 	(paper "A4")
+	(title_block
+		(title "Battery Gaulge")
+		(date "2026-05-29")
+		(company "UPM-Nizar El Azeouzi Amine")
+	)
 	(lib_symbols
 		(symbol "Connector:Conn_01x01_Pin"
 			(pin_names
@@ -2157,6 +2162,107 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "power:PWR_FLAG"
+			(power)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "#FLG"
+				(at 0 1.905 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Value" "PWR_FLAG"
+				(at 0 3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Special symbol for telling ERC where power comes from"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "flag power"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "PWR_FLAG_0_0"
+				(pin power_out line
+					(at 0 0 90)
+					(length 0)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(symbol "PWR_FLAG_0_1"
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 1.27) (xy -1.016 1.905) (xy 0 2.54) (xy 1.016 1.905) (xy 0 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 	)
 	(junction
 		(at 166.37 116.84)
@@ -2195,6 +2301,12 @@
 		(uuid "292c715e-6d55-47e5-908a-6ee4ad984ea7")
 	)
 	(junction
+		(at 161.29 71.12)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "302b7a24-8aa9-4f92-9902-85426c7d443e")
+	)
+	(junction
 		(at 102.87 60.96)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2205,6 +2317,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "373dd7a7-da47-4a6f-8d53-8c292a1a7a65")
+	)
+	(junction
+		(at 110.49 87.63)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "37480906-0a21-4149-a686-d7082fb5d2ad")
 	)
 	(junction
 		(at 110.49 78.74)
@@ -2241,6 +2359,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "9476dd3b-c143-4367-a090-3fc87e6d3f35")
+	)
+	(junction
+		(at 116.84 71.12)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "94df0af5-1404-4d7b-ac94-035977668390")
 	)
 	(junction
 		(at 121.92 110.49)
@@ -2290,6 +2414,10 @@
 		(color 0 0 0 0)
 		(uuid "ecbf4817-11ad-474b-a837-082ca69c2f15")
 	)
+	(no_connect
+		(at 119.38 55.88)
+		(uuid "531eb0f7-b93e-4424-bf85-4f558b989a56")
+	)
 	(wire
 		(pts
 			(xy 215.9 24.13) (xy 215.9 29.21)
@@ -2322,7 +2450,7 @@
 	)
 	(wire
 		(pts
-			(xy 110.49 71.12) (xy 119.38 71.12)
+			(xy 110.49 71.12) (xy 116.84 71.12)
 		)
 		(stroke
 			(width 0)
@@ -2512,6 +2640,16 @@
 	)
 	(wire
 		(pts
+			(xy 176.53 50.8) (xy 190.5 50.8)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4a5097ce-2aea-4b39-bcb6-9ca7b7cb188a")
+	)
+	(wire
+		(pts
 			(xy 166.37 105.41) (xy 166.37 116.84)
 		)
 		(stroke
@@ -2542,13 +2680,13 @@
 	)
 	(wire
 		(pts
-			(xy 175.26 50.8) (xy 181.61 50.8)
+			(xy 116.84 71.12) (xy 119.38 71.12)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "59bf38b3-c2c0-4c1e-bc5a-4acd8cf7dfbb")
+		(uuid "58bd8e8e-7b0d-4725-948d-1bd478c101bf")
 	)
 	(wire
 		(pts
@@ -2599,6 +2737,16 @@
 			(type default)
 		)
 		(uuid "6e604007-8fe0-423f-acb9-ed5566507a8c")
+	)
+	(wire
+		(pts
+			(xy 161.29 71.12) (xy 176.53 71.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6ed928a3-baa6-46cf-af9a-cf38fb53ff71")
 	)
 	(wire
 		(pts
@@ -2922,7 +3070,7 @@
 	)
 	(wire
 		(pts
-			(xy 160.02 71.12) (xy 176.53 71.12)
+			(xy 160.02 71.12) (xy 161.29 71.12)
 		)
 		(stroke
 			(width 0)
@@ -3022,7 +3170,7 @@
 	)
 	(wire
 		(pts
-			(xy 160.02 50.8) (xy 167.64 50.8)
+			(xy 160.02 50.8) (xy 168.91 50.8)
 		)
 		(stroke
 			(width 0)
@@ -3151,16 +3299,6 @@
 		(uuid "fde45225-d702-461e-ba75-6b6bec59d04c")
 	)
 	(label "REG25"
-		(at 179.07 50.8 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "00735696-34ff-4e05-ba13-60f103f28478")
-	)
-	(label "REG25"
 		(at 161.29 71.12 0)
 		(effects
 			(font
@@ -3169,6 +3307,16 @@
 			(justify left bottom)
 		)
 		(uuid "015f4f73-d95d-4aed-9453-77d70221bdf2")
+	)
+	(label "REG25"
+		(at 190.5 50.8 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "69003a3d-604a-4e6c-9be4-c9e5920930b9")
 	)
 	(label "REGIN"
 		(at 234.95 27.94 0)
@@ -3481,7 +3629,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
 			(at 83.82 69.342 90)
 			(effects
 				(font
@@ -3549,7 +3697,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:C_Rect_L7.0mm_W3.5mm_P5.00mm"
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 135.89 111.4552 0)
 			(effects
 				(font
@@ -3684,14 +3832,13 @@
 				)
 			)
 		)
-		(property "Footprint" "TFG-BQ34Z1G:PW0014A_N"
+		(property "Footprint" "BQ34Z100:SOP65P640X120-14N"
 			(at 139.7 58.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 					(italic yes)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" "https://www.ti.com/lit/gpn/bq34z100-g1"
@@ -3789,7 +3936,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
 			(at 113.03 99.568 90)
 			(effects
 				(font
@@ -3859,7 +4006,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:C_Rect_L7.0mm_W3.5mm_P5.00mm"
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 167.3352 105.41 0)
 			(effects
 				(font
@@ -3927,7 +4074,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
 			(at 113.03 112.268 90)
 			(effects
 				(font
@@ -4343,7 +4490,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
 			(at 197.358 36.83 90)
 			(effects
 				(font
@@ -4480,7 +4627,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:C_Rect_L7.0mm_W3.5mm_P5.00mm"
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 86.6648 36.83 0)
 			(effects
 				(font
@@ -4547,7 +4694,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:C_Rect_L7.0mm_W3.5mm_P5.00mm"
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 109.5248 80.01 0)
 			(effects
 				(font
@@ -4617,7 +4764,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:C_Rect_L7.0mm_W3.5mm_P5.00mm"
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 180.6448 72.39 0)
 			(effects
 				(font
@@ -4685,7 +4832,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
 			(at 81.28 46.482 90)
 			(effects
 				(font
@@ -4888,7 +5035,7 @@
 	)
 	(symbol
 		(lib_id "Device:Thermistor_NTC")
-		(at 171.45 50.8 90)
+		(at 172.72 50.8 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4896,7 +5043,7 @@
 		(dnp no)
 		(uuid "9d50fece-57fd-40ba-96fc-ffaa10e410b1")
 		(property "Reference" "TH1"
-			(at 171.45 54.356 90)
+			(at 172.72 54.356 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4904,7 +5051,7 @@
 			)
 		)
 		(property "Value" "Thermistor_NTC"
-			(at 171.704 48.514 90)
+			(at 172.974 48.514 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4912,7 +5059,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P5.08mm_Horizontal"
-			(at 170.18 50.8 0)
+			(at 171.45 50.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4921,7 +5068,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 170.18 50.8 0)
+			(at 171.45 50.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4930,7 +5077,7 @@
 			)
 		)
 		(property "Description" "Temperature dependent resistor, negative temperature coefficient"
-			(at 171.45 50.8 0)
+			(at 172.72 50.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5052,7 +5199,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
 			(at 187.198 36.83 90)
 			(effects
 				(font
@@ -5181,6 +5328,72 @@
 		)
 	)
 	(symbol
+		(lib_id "power:PWR_FLAG")
+		(at 161.29 71.12 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "ac312e06-9e23-4b5c-a04d-3af587216a71")
+		(property "Reference" "#FLG02"
+			(at 161.29 69.215 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 161.29 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 161.29 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 161.29 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 161.29 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "383db644-40e9-45bb-9100-29089535ada1")
+		)
+		(instances
+			(project ""
+				(path "/d9883196-7b86-429d-bce4-6095ecf99ec7"
+					(reference "#FLG02")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C")
 		(at 139.7 97.79 270)
 		(unit 1)
@@ -5205,7 +5418,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:C_Rect_L7.0mm_W3.5mm_P5.00mm"
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 135.89 98.7552 0)
 			(effects
 				(font
@@ -5478,7 +5691,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
 			(at 89.408 54.61 90)
 			(effects
 				(font
@@ -5515,6 +5728,72 @@
 			(project "BatteryGaulgue"
 				(path "/d9883196-7b86-429d-bce4-6095ecf99ec7"
 					(reference "R4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:PWR_FLAG")
+		(at 116.84 71.12 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "dc912140-a18f-4479-9f5d-38b188c12591")
+		(property "Reference" "#FLG01"
+			(at 116.84 73.025 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 116.84 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 116.84 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 116.84 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 116.84 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "4bfbefef-c440-4223-95cb-6009fdfca329")
+		)
+		(instances
+			(project ""
+				(path "/d9883196-7b86-429d-bce4-6095ecf99ec7"
+					(reference "#FLG01")
 					(unit 1)
 				)
 			)
@@ -5581,6 +5860,73 @@
 			(project "BatteryGaulgue"
 				(path "/d9883196-7b86-429d-bce4-6095ecf99ec7"
 					(reference "#PWR011")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:PWR_FLAG")
+		(at 110.49 87.63 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "e7bfc1d3-b41c-49b8-a9cd-f21d08a0734a")
+		(property "Reference" "#FLG03"
+			(at 108.585 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 106.68 87.6299 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 110.49 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 110.49 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 110.49 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "d32dcf7a-4d0b-4625-a4a1-5024fafa018b")
+		)
+		(instances
+			(project "BatteryGaulgue"
+				(path "/d9883196-7b86-429d-bce4-6095ecf99ec7"
+					(reference "#FLG03")
 					(unit 1)
 				)
 			)
