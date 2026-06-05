@@ -6264,6 +6264,17 @@
 			(uuid "f1ec3aa2-74fc-4231-bc3c-21e02000f08b")
 		)
 		(embedded_fonts no)
+		(model "${KICAD9_3DMODEL_DIR}/BQ34Z100PW-G1/BQ34Z100PW-G1.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz -90 -0 -0)
+			)
+		)
 	)
 	(gr_rect
 		(start 102.5 62)
