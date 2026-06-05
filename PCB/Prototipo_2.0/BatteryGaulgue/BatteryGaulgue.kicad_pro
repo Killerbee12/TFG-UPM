@@ -489,7 +489,7 @@
         "wire_width": 6
       },
       {
-        "clearance": 0.3,
+        "clearance": 0.2,
         "diff_pair_gap": 0.25,
         "diff_pair_width": 0.2,
         "microvia_diameter": 0.3,
@@ -512,6 +512,10 @@
       {
         "netclass": "Power",
         "pattern": "Net-(J1-Pin_1)"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "GND"
       }
     ]
   },
@@ -520,7 +524,7 @@
       "gencad": "",
       "idf": "",
       "netlist": "",
-      "plot": "D:/GitHub/TFG-UPM/PCB/Prototipo_2.0/BatteryGaulgue/Fabricacion",
+      "plot": "C:/Users/kille/Documents/GitHub/TFG-UPM/PCB/Prototipo_2.0/BatteryGaulgue/Fabricacion/",
       "pos_files": "",
       "specctra_dsn": "",
       "step": "",
