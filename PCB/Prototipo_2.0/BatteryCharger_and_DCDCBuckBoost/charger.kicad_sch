@@ -2200,7 +2200,7 @@
 	)
 	(wire
 		(pts
-			(xy 222.25 85.09) (xy 222.25 90.17)
+			(xy 222.25 85.09) (xy 222.25 92.71)
 		)
 		(stroke
 			(width 0)
@@ -2407,6 +2407,16 @@
 			(type default)
 		)
 		(uuid "6a3a5b34-67c0-44bd-a20d-476ec4729fb0")
+	)
+	(wire
+		(pts
+			(xy 233.68 92.71) (xy 222.25 92.71)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6bfbfc57-7cfc-4fba-b194-acfb2fbd1133")
 	)
 	(wire
 		(pts
@@ -2789,17 +2799,6 @@
 			(justify right)
 		)
 		(uuid "7d7b9f2c-f9d9-4ab9-aa4c-dbd703657318")
-	)
-	(hierarchical_label "Baterry"
-		(shape input)
-		(at 222.25 90.17 270)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "a8849374-8fb3-4be5-ae86-3ac6a6673d53")
 	)
 	(symbol
 		(lib_id "Connector:Conn_01x01_Pin")
@@ -4040,6 +4039,73 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 233.68 95.25 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "96f3716a-0fc4-43ac-907f-e4745514cc3c")
+		(property "Reference" "#PWR023"
+			(at 233.68 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 233.68 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 233.68 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 233.68 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 233.68 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "187d9d4b-fd7d-420e-b560-cb6b7231ee56")
+		)
+		(instances
+			(project "Battery_and_DCDC"
+				(path "/649c0e3e-1f53-4329-82f0-51243789e062/283533d0-c01c-4d30-9219-31230fff3359"
+					(reference "#PWR023")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:Thermistor_NTC")
 		(at 166.37 109.22 180)
 		(unit 1)
@@ -4504,6 +4570,75 @@
 			(project "Battery_and_DCDC"
 				(path "/649c0e3e-1f53-4329-82f0-51243789e062/283533d0-c01c-4d30-9219-31230fff3359"
 					(reference "#FLG01")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:Screw_Terminal_01x02")
+		(at 238.76 95.25 0)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "dddb7958-1fb6-41b3-bbda-e5a1f27315ed")
+		(property "Reference" "J16"
+			(at 238.76 86.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Screw_Terminal_01x02"
+			(at 238.76 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-2_1x02_P5.00mm_Horizontal"
+			(at 238.76 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 238.76 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic screw terminal, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
+			(at 238.76 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f09730ad-b4df-4584-9163-d0af02908791")
+		)
+		(pin "2"
+			(uuid "9192f344-6404-4491-8573-7896121e6233")
+		)
+		(instances
+			(project "Battery_and_DCDC"
+				(path "/649c0e3e-1f53-4329-82f0-51243789e062/283533d0-c01c-4d30-9219-31230fff3359"
+					(reference "J16")
 					(unit 1)
 				)
 			)

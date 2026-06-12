@@ -1,4 +1,4 @@
-27226139713272188
+27235006965045192
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -13,7 +13,7 @@ audio belton reverb
 0
 7
 7
-BQ34Z100
+BQ34Z100_Footprints
 SOP65P640X120-14N
 
 
@@ -100785,6 +100785,41 @@ Logo WEEE
 0
 0
 0
+TFG-BQ34Z1G
+PW0014A_L
+
+BQ34Z100PW-G1 
+0
+14
+14
+TFG-BQ34Z1G
+PW0014A_M
+
+BQ34Z100PW-G1 
+0
+14
+14
+TFG-BQ34Z1G
+PW0014A_N
+
+BQ34Z100PW-G1 
+0
+14
+14
+TFG-BQ25792
+RQM0029A-MFG
+
+PQ25792RQMR 
+0
+29
+29
+TFG-TPS551892Q
+VQFN21_RYQ_TEX
+
+TPS551892QWRYQRQ1 
+0
+21
+21
 TerminalBlock
 TerminalBlock_MaiXu_MX126-5.0-02P_1x02_P5.00mm
 terminal block MaiXu MX126-5.0-02P, 2 pins, pitch 5mm, size 10.5x7.8mm, drill diameter 1.3mm, pad diameter 2.8mm, https://www.lcsc.com/datasheet/lcsc_datasheet_2309150913_MAX-MX126-5-0-03P-GN01-Cu-S-A_C5188435.pdf, script-generated using https://gitlab.com/kicad/libraries/kicad-footprint-generator/-/tree/master/scripts/TerminalBlock_MaiXu
