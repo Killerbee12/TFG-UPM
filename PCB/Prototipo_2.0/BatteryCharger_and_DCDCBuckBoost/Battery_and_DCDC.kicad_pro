@@ -232,7 +232,15 @@
         ""
       ],
       [
+        "multiple_net_names|1600200|939800|0ba86fda-56fc-49dc-bdf9-0e84826c80cd|a65f1bfd-1913-4550-a8ca-5d941137a8c7|/649c0e3e-1f53-4329-82f0-51243789e062/07d8971c-17b7-462e-98c4-128c934db19c|/649c0e3e-1f53-4329-82f0-51243789e062/07d8971c-17b7-462e-98c4-128c934db19c|/649c0e3e-1f53-4329-82f0-51243789e062/07d8971c-17b7-462e-98c4-128c934db19c",
+        ""
+      ],
+      [
         "multiple_net_names|1600200|939800|5f4ed0a2-a46b-49a9-a7b1-84b9a7fb5772|cd469028-c3f3-4824-8805-bb7823c3ce69|/649c0e3e-1f53-4329-82f0-51243789e062/07d8971c-17b7-462e-98c4-128c934db19c|/649c0e3e-1f53-4329-82f0-51243789e062/07d8971c-17b7-462e-98c4-128c934db19c|/649c0e3e-1f53-4329-82f0-51243789e062/07d8971c-17b7-462e-98c4-128c934db19c",
+        ""
+      ],
+      [
+        "multiple_net_names|1600200|939800|da5d346b-bb98-4e6d-b287-d35683480900|18793843-a1d1-4080-937a-59749ff45e68|/649c0e3e-1f53-4329-82f0-51243789e062/07d8971c-17b7-462e-98c4-128c934db19c|/649c0e3e-1f53-4329-82f0-51243789e062/07d8971c-17b7-462e-98c4-128c934db19c|/649c0e3e-1f53-4329-82f0-51243789e062/07d8971c-17b7-462e-98c4-128c934db19c",
         ""
       ],
       [
@@ -486,6 +494,20 @@
         "via_diameter": 0.6,
         "via_drill": 0.3,
         "wire_width": 6
+      },
+      {
+        "clearance": 0.15,
+        "diff_pair_gap": 0.25,
+        "diff_pair_width": 0.2,
+        "microvia_diameter": 0.3,
+        "microvia_drill": 0.1,
+        "name": "Power",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 0,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 2.5,
+        "via_diameter": 1.2,
+        "via_drill": 0.6
       }
     ],
     "meta": {
@@ -493,7 +515,28 @@
     },
     "net_colors": null,
     "netclass_assignments": null,
-    "netclass_patterns": []
+    "netclass_patterns": [
+      {
+        "netclass": "Power",
+        "pattern": "/Battery_Charger/System_Load"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "/Battery_Charger/V_IN"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "/ConverterDC_DC/Out_system"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "Net-(PS1-SW1)"
+      },
+      {
+        "netclass": "Default",
+        "pattern": "Net-(PS1-SW2)"
+      }
+    ]
   },
   "pcbnew": {
     "last_paths": {
@@ -573,12 +616,150 @@
           "label": "Datasheet",
           "name": "Datasheet",
           "show": true
+        },
+        {
+          "group_by": false,
+          "label": "Availability",
+          "name": "Availability",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "CUI_PURCHASE_URL",
+          "name": "CUI_PURCHASE_URL",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Check_prices",
+          "name": "Check_prices",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "DESCRIPTION",
+          "name": "DESCRIPTION",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Description_1",
+          "name": "Description_1",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "MANUFACTURER",
+          "name": "MANUFACTURER",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "MANUFACTURER_PART_NUMBER",
+          "name": "MANUFACTURER_PART_NUMBER",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "MAXIMUM_PACKAGE_HEIGHT",
+          "name": "MAXIMUM_PACKAGE_HEIGHT",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "MF",
+          "name": "MF",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "MP",
+          "name": "MP",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "PACKAGE",
+          "name": "PACKAGE",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "PARTREV",
+          "name": "PARTREV",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "PRICE",
+          "name": "PRICE",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "PURCHASE-URL",
+          "name": "PURCHASE-URL",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Package",
+          "name": "Package",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Price",
+          "name": "Price",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Purchase-URL",
+          "name": "Purchase-URL",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "STANDARD",
+          "name": "STANDARD",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "SnapEDA_Link",
+          "name": "SnapEDA_Link",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "VENDOR",
+          "name": "VENDOR",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "AVAILABILITY",
+          "name": "AVAILABILITY",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Description",
+          "name": "Description",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "#",
+          "name": "${ITEM_NUMBER}",
+          "show": false
         }
       ],
       "filter_string": "",
       "group_symbols": true,
       "include_excluded_from_bom": true,
-      "name": "Default Editing",
+      "name": "",
       "sort_asc": true,
       "sort_field": "Reference"
     },

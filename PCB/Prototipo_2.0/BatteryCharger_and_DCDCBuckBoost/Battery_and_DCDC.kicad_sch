@@ -506,7 +506,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "PJ-002BH_1"
+		(symbol "PJ-002BH:PJ-002BH"
 			(pin_names
 				(offset 1.016)
 			)
@@ -550,16 +550,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "MF" "Same Sky"
+			(property "Description" "2.5 x 6.5 mm, 5.0 A, Horizontal, Through Hole, Dc Power Jack Connector"
 				(at 0 0 0)
 				(effects
 					(font
@@ -569,7 +560,7 @@
 					(hide yes)
 				)
 			)
-			(property "DESCRIPTION" "2.5 x 6.5 mm, 5.0 A, Horizontal, Through Hole, Dc Power Jack Connector"
+			(property "MF" "Same Sky"
 				(at 0 0 0)
 				(effects
 					(font
@@ -709,7 +700,7 @@
 					(hide yes)
 				)
 			)
-			(symbol "PJ-002BH_1_0_0"
+			(symbol "PJ-002BH_0_0"
 				(polyline
 					(pts
 						(xy -5.715 3.81) (xy -1.27 3.81)
@@ -1697,6 +1688,228 @@
 		)
 	)
 	(symbol
+		(lib_id "PJ-002BH:PJ-002BH")
+		(at 62.23 45.72 90)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "b099e41f-691d-40f9-97d2-59965c51c421")
+		(property "Reference" "J12"
+			(at 53.34 42.4843 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "PJ-002BH"
+			(at 55.88 42.4843 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "PJ-002BH:CUI_PJ-002BH"
+			(at 62.23 45.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 62.23 45.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 62.23 45.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MF" "Same Sky"
+			(at 62.23 45.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "DESCRIPTION" "2.5 x 6.5 mm, 5.0 A, Horizontal, Through Hole, Dc Power Jack Connector"
+			(at 62.23 45.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "PACKAGE" "None"
+			(at 62.23 45.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "PRICE" "None"
+			(at 62.23 45.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Package" "None"
+			(at 62.23 45.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Check_prices" "https://www.snapeda.com/parts/PJ-002BH/Same+Sky/view-part/?ref=eda"
+			(at 62.23 45.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "CUI_PURCHASE_URL" "https://www.cuidevices.com/product/interconnect/connectors/dc-power-connectors/jacks/pj-002bh?utm_source=snapeda.com&utm_medium=referral&utm_campaign=snapedaBOM"
+			(at 62.23 45.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "SnapEDA_Link" "https://www.snapeda.com/parts/PJ-002BH/Same+Sky/view-part/?ref=snap"
+			(at 62.23 45.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MP" "PJ-002BH"
+			(at 62.23 45.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Purchase-URL" "https://www.snapeda.com/api/url_track_click_mouser/?unipart_id=329039&manufacturer=Same Sky&part_name=PJ-002BH&search_term=pj-002bh"
+			(at 62.23 45.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Price" "None"
+			(at 62.23 45.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Description_1" "2.5 x 6.5 mm, 5.0 A, Horizontal, Through Hole, Dc Power Jack Connector"
+			(at 62.23 45.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Availability" "In Stock"
+			(at 62.23 45.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "AVAILABILITY" "In Stock"
+			(at 62.23 45.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "PURCHASE-URL" "https://pricing.snapeda.com/search/part/PJ-002BH/?ref=eda"
+			(at 62.23 45.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "cb2314ac-5c51-48c9-81a1-01e28e810ce5")
+		)
+		(pin "3"
+			(uuid "32910321-84e5-4f76-9862-7932d3924ca5")
+		)
+		(pin "2"
+			(uuid "00b54a27-f1e4-4b30-ad8e-eeee1f7c43ee")
+		)
+		(instances
+			(project ""
+				(path "/649c0e3e-1f53-4329-82f0-51243789e062"
+					(reference "J12")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Connector:TestPoint")
 		(at 199.39 52.07 0)
 		(unit 1)
@@ -1894,232 +2107,6 @@
 			(project "Battery_and_DCDC"
 				(path "/649c0e3e-1f53-4329-82f0-51243789e062"
 					(reference "#PWR019")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_name "PJ-002BH_1")
-		(lib_id "PJ-002BH:PJ-002BH")
-		(at 62.23 45.72 90)
-		(mirror x)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "fc24c4c7-349e-4cea-8ffe-499afd5b3da5")
-		(property "Reference" "J13"
-			(at 66.04 41.2142 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "PJ-002BH"
-			(at 66.04 43.7542 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "PJ-002BH:CUI_PJ-002BH"
-			(at 62.23 45.72 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 62.23 45.72 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 62.23 45.72 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MF" "Same Sky"
-			(at 62.23 45.72 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "DESCRIPTION" "2.5 x 6.5 mm, 5.0 A, Horizontal, Through Hole, Dc Power Jack Connector"
-			(at 62.23 45.72 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "PACKAGE" "None"
-			(at 62.23 45.72 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "PRICE" "None"
-			(at 62.23 45.72 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Package" "None"
-			(at 62.23 45.72 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Check_prices" "https://www.snapeda.com/parts/PJ-002BH/Same+Sky/view-part/?ref=eda"
-			(at 62.23 45.72 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "CUI_PURCHASE_URL" "https://www.cuidevices.com/product/interconnect/connectors/dc-power-connectors/jacks/pj-002bh?utm_source=snapeda.com&utm_medium=referral&utm_campaign=snapedaBOM"
-			(at 62.23 45.72 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "SnapEDA_Link" "https://www.snapeda.com/parts/PJ-002BH/Same+Sky/view-part/?ref=snap"
-			(at 62.23 45.72 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "MP" "PJ-002BH"
-			(at 62.23 45.72 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Purchase-URL" "https://www.snapeda.com/api/url_track_click_mouser/?unipart_id=329039&manufacturer=Same Sky&part_name=PJ-002BH&search_term=pj-002bh"
-			(at 62.23 45.72 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Price" "None"
-			(at 62.23 45.72 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Description_1" "2.5 x 6.5 mm, 5.0 A, Horizontal, Through Hole, Dc Power Jack Connector"
-			(at 62.23 45.72 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Availability" "In Stock"
-			(at 62.23 45.72 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "AVAILABILITY" "In Stock"
-			(at 62.23 45.72 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "PURCHASE-URL" "https://pricing.snapeda.com/search/part/PJ-002BH/?ref=eda"
-			(at 62.23 45.72 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "a96bfc9f-1600-478a-937a-0e1a854c7aad")
-		)
-		(pin "3"
-			(uuid "fda33288-84fe-4ccf-8e3c-e1470f3a5c19")
-		)
-		(pin "1"
-			(uuid "8da9b431-5612-4b7b-82a8-f74a95f25b7a")
-		)
-		(instances
-			(project ""
-				(path "/649c0e3e-1f53-4329-82f0-51243789e062"
-					(reference "J13")
 					(unit 1)
 				)
 			)
