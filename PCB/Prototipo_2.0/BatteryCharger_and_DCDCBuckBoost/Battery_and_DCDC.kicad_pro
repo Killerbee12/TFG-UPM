@@ -52,7 +52,28 @@
         }
       },
       "diff_pair_dimensions": [],
-      "drc_exclusions": [],
+      "drc_exclusions": [
+        [
+          "silk_edge_clearance|134250000|83382295|48179211-f8b8-4340-8118-e4b714ba36fe|0168fe58-d24b-4dd4-8a7e-6417d3e8f36b",
+          ""
+        ],
+        [
+          "silk_edge_clearance|145550000|101000000|48179211-f8b8-4340-8118-e4b714ba36fe|5e696b34-4164-4b38-b101-cc8019934670",
+          ""
+        ],
+        [
+          "silk_edge_clearance|154550000|101000000|48179211-f8b8-4340-8118-e4b714ba36fe|c4403e4b-4d47-460d-a18a-2bed11e075ff",
+          ""
+        ],
+        [
+          "text_height|160432700|85382900|c488b6f2-51a4-44fe-980c-8e040dabfb40|00000000-0000-0000-0000-000000000000",
+          ""
+        ],
+        [
+          "text_thickness|160432700|85382900|c488b6f2-51a4-44fe-980c-8e040dabfb40|00000000-0000-0000-0000-000000000000",
+          ""
+        ]
+      ],
       "meta": {
         "version": 2
       },
@@ -533,8 +554,40 @@
         "pattern": "Net-(PS1-SW1)"
       },
       {
-        "netclass": "Default",
+        "netclass": "Power",
         "pattern": "Net-(PS1-SW2)"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "Net-(J14-Pin_3)"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "GND"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "Net-(J14-Pin_1)"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "Net-(J2-Pin_1)"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "Net-(D2-K)"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "Net-(J10-Pin_2)"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "Net-(J11-Pin_1)"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "Net-(D1-K)"
       }
     ]
   },
@@ -543,7 +596,7 @@
       "gencad": "",
       "idf": "",
       "netlist": "",
-      "plot": "",
+      "plot": "Fabricacion/",
       "pos_files": "",
       "specctra_dsn": "",
       "step": "",
